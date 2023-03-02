@@ -19,7 +19,7 @@ public class Authentication {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(length = 20, nullable = false)
-	private Integer code;
+	private String code;
 
 	@Column(length = 255, nullable = false)
 	private String password;
