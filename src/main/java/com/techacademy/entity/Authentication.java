@@ -4,8 +4,6 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -17,7 +15,6 @@ import lombok.Data;
 @Table(name = "authentication")
 public class Authentication {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(length = 20, nullable = false)
 	private String code;
 
@@ -25,7 +22,7 @@ public class Authentication {
 	private String password;
 
 	@Column(length = 10, nullable = false)
-	private Integer role;
+	private String role;
 
 	@Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = true)
