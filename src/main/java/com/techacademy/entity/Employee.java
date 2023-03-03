@@ -2,6 +2,7 @@ package com.techacademy.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -38,7 +39,7 @@ public class Employee {
 	@Column(nullable = true)
 	public Date updatedAt;
 
-	@OneToOne(mappedBy = "employee")
+	@OneToOne(mappedBy = "employee", cascade = CascadeType.ALL)
 	private Authentication authentication;
 
 	@PreRemove
