@@ -7,9 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.PreRemove;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.transaction.Transactional;
 
 import lombok.Data;
 
@@ -25,13 +28,24 @@ public class Employee {
 	private String name;
 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer delete_flag;
+	private Integer deleteFlag;
 
 	@Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable = true)
-    public Date created_at;
+	@Column(nullable = true)
+	public Date createdAt;
 
 	@Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable = true)
-    public Date updated_at;
+	@Column(nullable = true)
+	public Date updatedAt;
+
+	@OneToOne(mappedBy = "employee")
+	private Authentication authentication;
+
+	@PreRemove
+    @Transactional
+    private void preRemove() {
+        if (authentication!=null) {
+            authentication.setEmployee_id(null);
+        }
+    }
 }

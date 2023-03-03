@@ -1,32 +1,31 @@
 package com.techacademy.entity;
 
-import java.util.Date;
+import java.sql.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
 import lombok.Data;
 
 @Data
 @Entity
 @Table(name = "authentication")
 public class Authentication {
-	@Id
-	@Column(length = 20, nullable = false)
-	private String code;
+    /** ログインユーザ名 */
+    @Id
+    private String code;
 
-	@Column(length = 255, nullable = false)
-	private String password;
+    /** パスワード */
+    private String password;
 
-	@Column(length = 10, nullable = false)
-	private String role;
+    /** 有効日付 */
+    private Date validDate;
 
-	@Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable = true)
-    public Date valid_date;
-
-	private Integer employee_id;
+    /** ユーザID */
+    @OneToOne
+    @JoinColumn(name="employee_id", referencedColumnName="id")
+    private User employee_id;
 }
