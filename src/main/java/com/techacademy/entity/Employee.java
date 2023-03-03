@@ -46,7 +46,7 @@ public class Employee {
     @Transactional
     private void preRemove() {
         if (authentication!=null) {
-            authentication.setEmployee_id(null);
+            authentication.setEmployee(null);
         }
     }
 }

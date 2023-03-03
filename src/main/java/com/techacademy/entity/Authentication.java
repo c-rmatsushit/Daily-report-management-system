@@ -1,7 +1,5 @@
 package com.techacademy.entity;
 
-import java.sql.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -22,10 +20,10 @@ public class Authentication {
     private String password;
 
     /** 有効日付 */
-    private Date validDate;
+    private String role;
 
     /** ユーザID */
     @OneToOne
     @JoinColumn(name="employee_id", referencedColumnName="id")
-    private Employee employee_id;
+    private Employee employee;
 }
