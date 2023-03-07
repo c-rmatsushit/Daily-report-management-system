@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>日報管理システム</title>
+<link rel="stylesheet" th:href="@{/css/employee/update.css}">
+</head>
+<body>
+    <h1>情報管理システム</h1>
+    <h2>更新</h2>
+    <form method="post" th:action="@{/employee/update/{id}/(id=${employee.id})}" th:object="${employee}">
+        <label for="id">ID</label>
+        <input type="hidden" id="id" name="id" th:value="*{id}" th:text="*{id}">
+        <br>
+        <label for="name">氏名</label>
+        <input type="text" th:field="*{name}">
+        <br>
+         <label for="createdAt">登録日時</label>
+        <input type="text" th:field="*{createdAt}">
+        <br>
+        <br>
+        <label for="updatedAt">更新日時</label>
+        <input type="text" th:field="*{updatedAt}">
+        <br>
+        <label for="deleteFlag">削除フラグ</label>
+        <input type="text" th:field="*{deleteFlag}">
+        <br>
+        <br>
+        <input type="submit" value="更新実行">
+        <a th:href="@{/employee/list}">更新せずに一覧に戻る</a>
+    </form>
+</body>
+</html>
