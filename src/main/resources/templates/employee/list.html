@@ -8,6 +8,7 @@
 <body>
 	<h1>日報</h1>
 	<h2>一覧</h2>
+	<a th:href="@{/employee/register}">登録</a>
 	<table>
 		<tr>
 			<th>ID</th>
@@ -15,6 +16,7 @@
 			<th>登録日時</th>
 			<th>更新日時</th>
 			<th>削除フラグ</th>
+			<th></th>
 		</tr>
 		<tr th:each="employee : ${employeelist}">
 			<td th:text="${employee.id}"></td>
@@ -22,6 +24,8 @@
 			<td th:text="${employee.updatedAt}"></td>
 			<td th:text="${employee.createdAt}"></td>
 			<td th:text="${employee.deleteFlag}"></td>
+			<td><a th:href="@{/employee/update/{id}/(id=${employee.id})}">更新</a>
+			</td>
 		</tr>
 	</table>
 </body>
