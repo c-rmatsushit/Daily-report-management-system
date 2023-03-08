@@ -1,7 +1,6 @@
 package com.techacademy.entity;
 
-import java.util.Date;
-
+import java.time.LocalDateTime;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.PreRemove;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.transaction.Transactional;
 
 import org.hibernate.annotations.Where;
@@ -34,13 +31,11 @@ public class Employee {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer deleteFlag;
 
-	@Temporal(TemporalType.TIMESTAMP)
 	@Column(nullable = true)
-	public Date createdAt;
+	public LocalDateTime createdAt;
 
-	@Temporal(TemporalType.TIMESTAMP)
 	@Column(nullable = true)
-	public Date updatedAt;
+	public LocalDateTime updatedAt;
 
 	@OneToOne(mappedBy = "employee", cascade = CascadeType.ALL)
 	private Authentication authentication;

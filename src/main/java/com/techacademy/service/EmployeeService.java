@@ -1,5 +1,6 @@
 package com.techacademy.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -28,6 +29,9 @@ public class EmployeeService {
 
 	@Transactional
 	public Employee saveEmployee(Employee employee) {
+		LocalDateTime now = LocalDateTime.now();
+		employee.setCreatedAt(now);
+		employee.setUpdatedAt(now);
 		return employeeRepository.save(employee);
 	}
 }
