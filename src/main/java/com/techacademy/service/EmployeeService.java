@@ -2,6 +2,7 @@ package com.techacademy.service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 import javax.transaction.Transactional;
 
@@ -34,4 +35,12 @@ public class EmployeeService {
 		employee.setUpdatedAt(now);
 		return employeeRepository.save(employee);
 	}
+
+	@Transactional
+	public void deleteEmployee(Set<Integer> idck) {
+		for (Integer id : idck) {
+			employeeRepository.deleteById(id);
+		}
+	}
+
 }

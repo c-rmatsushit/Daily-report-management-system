@@ -14,6 +14,9 @@ import javax.transaction.Transactional;
 
 import org.hibernate.annotations.Where;
 
+import javax.validation.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Length;
+
 import lombok.Data;
 
 @Data
@@ -26,6 +29,8 @@ public class Employee {
 	private Integer id;
 
 	@Column(length = 20, nullable = false)
+	@NotEmpty
+	@Length(max = 20)
 	private String name;
 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,10 +46,10 @@ public class Employee {
 	private Authentication authentication;
 
 	@PreRemove
-    @Transactional
-    private void preRemove() {
-        if (authentication!=null) {
-            authentication.setEmployee(null);
-        }
-    }
+	@Transactional
+	private void preRemove() {
+		if (authentication != null) {
+			authentication.setEmployee(null);
+		}
+	}
 }
