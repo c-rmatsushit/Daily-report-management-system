@@ -17,22 +17,24 @@ public class SecurityConfig {
             .loginProcessingUrl("/login")    // ユーザー名・パスワードの送信先
             .loginPage("/login")             // ログイン画面
             .defaultSuccessUrl("/employee/list") // ログイン成功後のリダイレクト先
+            .usernameParameter("code")
             .failureUrl("/login?error")      // ログイン失敗時のリダイレクト先
             .permitAll()                     // ログイン画面は未ログインでアクセス可
         ).logout(logout -> logout
             .logoutSuccessUrl("/login")      // ログアウト後のリダイレクト先
         ).authorizeHttpRequests(auth -> auth
-            .requestMatchers(PathRequest.toStaticResources().atCommonLocations())
+                .requestMatchers(PathRequest.toStaticResources().atCommonLocations())
                 .permitAll()                 // css等は未ログインでアクセス可
+            .mvcMatchers("/employee/**").hasAuthority("管理者") // 追記部分：従業員管理は管理者のみアクセス可
             .anyRequest().authenticated()    // その他はログイン必要
         );
 
         return http.build();
     }
 
-    /** ハッシュ化したパスワードの比較に使用する */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
 }
