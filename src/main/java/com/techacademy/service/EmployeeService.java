@@ -2,6 +2,7 @@ package com.techacademy.service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import javax.transaction.Transactional;
@@ -27,7 +28,9 @@ public class EmployeeService {
 	}
 
 	public Employee getEmployee(Integer id) {
-		return employeeRepository.findById(id).get();
+		Optional<Employee> option = employeeRepository.findById(id);
+		Employee employee = option.orElse(null);
+		return employee;
 	}
 
 	@Transactional
@@ -47,5 +50,6 @@ public class EmployeeService {
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+
 
 }

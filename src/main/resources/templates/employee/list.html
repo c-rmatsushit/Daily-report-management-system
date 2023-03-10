@@ -5,38 +5,35 @@
 <title>日報管理システム</title>
 <link rel="stylesheet" th:href="@{/css/employee/list.css}">
 </head>
+<header>
+	<table>
+		<tr>
+			<th>日報管理システム</th>
+			<th>従業員管理</th>
+			<th>日報管理</th>
+		</tr>
+	</table>
+</header>
 <body>
-	<h1>従業員情報</h1>
-	<h2>一覧</h2>
-	    <form method="post" th:action="@{/logout}">
-        <input type="submit" value="ログアウト">
-    </form><br>
+	<h1>従業員 一覧</h1>
+	<form method="post" th:action="@{/logout}">
+		<input type="submit" value="ログアウト">
+	</form>
+	<br>
 	<form name="frm" method="post" th:action="@{/employee/list}">
-		<a th:href="@{/employee/register}">登録</a> <input type="submit"
-			name="deleteRun" id="deleteRun" value="(選択)した従業員を一括削除">
 		<table>
 			<tr>
-				<th class="center">(選択)</th>
-				<th>ID</th>
+				<th>社員番号</th>
 				<th>氏名</th>
-				<th>登録日時</th>
-				<th>更新日時</th>
-				<th>削除フラグ</th>
-				<th>更新</th>
+				<th>操作</th>
 			</tr>
 			<tr th:each="employee : ${employeelist}">
-				<td class="center"><input type="checkbox" name="idck"
-					th:value="${employee.id}"></td>
 				<td th:text="${employee.id}"></td>
 				<td th:text="${employee.name}"></td>
-				<td
-					th:text="${#temporals.format(employee.updatedAt, 'yyyy/MM/dd HH:mm:ss')}"></td>
-				<td
-					th:text="${#temporals.format(employee.createdAt, 'yyyy/MM/dd HH:mm:ss')}"></td>
-				<td th:text="${employee.deleteFlag}"></td>
-				<td><a th:href="@{/employee/update/{id}/(id=${employee.id})}">更新</a>
+				<td><a th:href="@{/employee/detail/{id}/(id=${employee.id})}">詳細</a>
 			</tr>
 		</table>
+		<a th:href="@{/employee/register}">登録</a>
 	</form>
 	<script th:src="@{/js/employee/list.js}"></script>
 </body>

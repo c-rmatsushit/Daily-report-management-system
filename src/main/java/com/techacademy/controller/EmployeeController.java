@@ -31,6 +31,13 @@ public class EmployeeController {
 		return "employee/list";
 	}
 
+	@GetMapping(value = { "/detail", "/detail/{id}/" })
+	public String getEemployee(@PathVariable(name = "id", required = false) Integer id, Model model) {
+		Employee employee = id != null ? service.getEmployee(id) : new Employee();
+		model.addAttribute("employee", employee);
+		return "employee/detail";
+	}
+
 	@GetMapping("/register")
 	public String getRegister(@ModelAttribute Employee employee) {
 		return "employee/register";
