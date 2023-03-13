@@ -10,11 +10,6 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-
 import com.techacademy.entity.Employee;
 import com.techacademy.repository.EmployeeRepository;
 
@@ -29,11 +24,14 @@ public class EmployeeService {
 
 	public List<Employee> getEmployeeList() {
 		return employeeRepository.findAll();
+
 	}
 
 	public Employee getEmployee(Integer id) {
 		Optional<Employee> option = employeeRepository.findById(id);
 		Employee employee = option.orElse(null);
+		employee.getAuthentication().getCode();
+		employee.getAuthentication().getRole();
 		return employee;
 	}
 
@@ -65,10 +63,12 @@ public class EmployeeService {
 	private PasswordEncoder passwordEncoder;
 
 
-	public void updateEmployee(Integer id, String name) {
-		// TODO 自動生成されたメソッド・スタブ
-
+	public Employee updateEmployee(Integer id, String name) {
+		Optional<Employee> option = employeeRepository.findById(id);
+		Employee employee = option.orElse(null);
+		employee.getAuthentication().getCode();
+		employee.getAuthentication().getRole();
+		return employee;
+	}
 	}
 
-
-}

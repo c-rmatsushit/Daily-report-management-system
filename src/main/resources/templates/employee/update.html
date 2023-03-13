@@ -11,17 +11,27 @@
     <form method="post" th:action="@{/employee/update/{id}/(id=${employee.id})}" th:object="${employee}">
         <label for="id">ID</label>
         <input type="hidden" id="id" name="id" th:value="*{id}" th:text="*{id}">
+         <br>
+         <br>
+         <label for="社員番号">社員番号</label>
+        <input type="text" th:field="*{name}">
         <br>
+          <br>
          <label for="name">氏名</label>
         <input type="text" th:field="*{name}">
         <br>
         <br>
-        <label for="deleteFlag">削除フラグ</label>
+         <label for="name">パスワード</label>
+        <input type="text" th:field="*{name}">
+        <br>
+        <br>
+        <label for="deleteFlag">権限</label>
         <input type="text" th:field="*{deleteFlag}">
         <br>
         <br>
         <input type="submit" value="更新実行">
         <a th:href="@{/employee/list}">更新せずに一覧に戻る</a>
     </form>
+    <a th:href="@{/employee/delete/{id}/(id=${employee.id})}">削除</a>
 </body>
 </html>
