@@ -11,14 +11,13 @@
 	    <form method="post" th:action="@{/logout}">
         <input type="submit" value="ログアウト">
     </form><br>
-	<form method="post" action="/employee/detail">
+	<form method="post" th:action="@{/employee/detail/{id}/(id=${employee.id})}" th:object="${employee}">
 	 <table th:object="${country}">
 			<tr>
-				<th>ID</th>
+				<th>社員番号</th>
 				<th>氏名</th>
 				<th>登録日時</th>
 				<th>更新日時</th>
-				<th>更新</th>
 			</tr>
 			<tr th:each="employee : ${employeelist}">
 				<td th:text="${employee.id}"></td>
@@ -27,8 +26,6 @@
 					th:text="${#temporals.format(employee.updatedAt, 'yyyy/MM/dd HH:mm:ss')}"></td>
 				<td
 					th:text="${#temporals.format(employee.createdAt, 'yyyy/MM/dd HH:mm:ss')}"></td>
-				<td th:text="${employee.deleteFlag}"></td>
-				<td><a th:href="@{/employee/update/{id}/(id=${employee.id})}">更新</a>
 			</tr>
 		</table>
 	</form>

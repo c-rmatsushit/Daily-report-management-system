@@ -32,10 +32,8 @@ public class EmployeeController {
 	}
 
     @GetMapping(value = { "/detail", "/detail/{id}/" })
-    public String getEmployeedetail(@PathVariable(name = "id", required = false) Integer id, Model model) {
-        Employee employee = id != null ? service.getEmployee(id) : new Employee();
-        //
-        model.addAttribute("employee", employee);
+    public String getEmployeedetail(@PathVariable("id") Integer id, Model model) {
+		model.addAttribute("employee", service.getEmployee(id));
         return "employee/detail";
     }
 
