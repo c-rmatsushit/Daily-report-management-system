@@ -31,11 +31,18 @@ public class EmployeeController {
 		return "employee/list";
 	}
 
-	@GetMapping(value = { "/detail", "/detail/{id}/" })
-	public String getEemployee(@PathVariable(name = "id", required = false) Integer id, Model model) {
-		Employee employee = id != null ? service.getEmployee(id) : new Employee();
-		model.addAttribute("employee", employee);
-		return "employee/detail";
+    @GetMapping(value = { "/detail", "/detail/{id}/" })
+    public String getEmployeedetail(@PathVariable(name = "id", required = false) Integer id, Model model) {
+        Employee employee = id != null ? service.getEmployee(id) : new Employee();
+        //
+        model.addAttribute("employee", employee);
+        return "employee/detail";
+    }
+
+	@PostMapping("/detail")
+	public String postEmployee(@RequestParam("id") Integer id, @RequestParam("name") String name, Model model) {
+		service.updateEmployee(id, name);
+		return "redirect:/employee/list";
 	}
 
 	@GetMapping("/register")
