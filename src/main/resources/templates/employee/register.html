@@ -11,7 +11,7 @@
     <form method="post" th:action="@{/employee/register}" th:object="${employee}">
          <br>
          <label for="code">社員番号</label>
-        <input type="text" th:field="*{code}">
+        <input type="text" th:field="*{authentication.code}">
         <br>
           <br>
          <label for="name">氏名</label>
@@ -19,13 +19,14 @@
         <br>
         <br>
          <label for="password">パスワード</label>
-        <input type="text" th:field="*{password}">
+        <input type="text" th:field="*{authentication.password}">
         <br>
         <br>
         <label for="role">権限</label>
-        <input type="text" th:field="*{role}">
-        <br>
-        <br>
+        <select th:field="*{role}">
+            <option value="" th:text="選択してください">
+            <option th:each="item:${T(com.techacademy.entity.Employee.Authentication.Role).values()}" th:value="${item}" th:text="${item}" th:selected="*{role} == ${item}">
+        </select>
         <input type="submit" value="登録実行">
         <a th:href="@{/employee/list}">登録せずに一覧に戻る</a>
     </form>

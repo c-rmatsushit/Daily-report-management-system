@@ -14,20 +14,22 @@
          <br>
          <br>
          <label for="社員番号">社員番号</label>
-        <input type="text" th:field="*{name}">
+        <input type="text" th:field="*{authentication.code}">
         <br>
           <br>
          <label for="name">氏名</label>
         <input type="text" th:field="*{name}">
         <br>
         <br>
-         <label for="name">パスワード</label>
-        <input type="text" th:field="*{name}">
+         <label for="password">パスワード</label>
+        <input type="text" th:field="*{authentication.password}">
         <br>
         <br>
-        <label for="deleteFlag">権限</label>
-        <input type="text" th:field="*{deleteFlag}">
-        <br>
+        <label for="role">権限</label>
+        <select th:field="*{role}">
+            <option value="" th:text="選択してください">
+            <option th:each="item:${T(com.techacademy.entity.Employee.Authentication.Role).values()}" th:value="${item}" th:text="${item}" th:selected="*{role} == ${item}">
+        </select>
         <br>
         <input type="submit" value="更新実行">
         <a th:href="@{/employee/list}">更新せずに一覧に戻る</a>
