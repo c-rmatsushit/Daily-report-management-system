@@ -7,13 +7,12 @@
 </head>
 <body>
 	<h1>従業員情報</h1>
-	<h2>一覧</h2>
+	<h2>詳細</h2>
 	<form method="post" th:action="@{/logout}">
 		<input type="submit" value="ログアウト">
 	</form>
 	<br>
 <body>
-	<h1>詳細</h1>
 	<form method="post" action="/employee/detail">
 		<table th:object="${employee}">
 			<tr>

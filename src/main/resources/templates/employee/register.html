@@ -10,20 +10,20 @@
     <h2>登録</h2>
     <form method="post" th:action="@{/employee/register}" th:object="${employee}">
          <br>
-         <label for="社員番号">社員番号</label>
-        <input type="text" th:field="*{name}">
+         <label for="code">社員番号</label>
+        <input type="text" th:field="*{code}">
         <br>
           <br>
          <label for="name">氏名</label>
         <input type="text" th:field="*{name}">
         <br>
         <br>
-         <label for="name">パスワード</label>
-        <input type="text" th:field="*{name}">
+         <label for="password">パスワード</label>
+        <input type="text" th:field="*{password}">
         <br>
         <br>
-        <label for="deleteFlag">権限</label>
-        <input type="text" th:field="*{deleteFlag}">
+        <label for="role">権限</label>
+        <input type="text" th:field="*{role}">
         <br>
         <br>
         <input type="submit" value="登録実行">
