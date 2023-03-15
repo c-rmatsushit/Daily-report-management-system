@@ -14,26 +14,31 @@
          <br>
          <br>
          <label for="社員番号">社員番号</label>
-        <input type="text" th:field="*{authentication.code}">
+        <input type="text" th:field="*{authentication.code}" th:errorclass="err">
+        <span th:errors="*{authentication.code}" class="err"></span>
         <br>
           <br>
          <label for="name">氏名</label>
-        <input type="text" th:field="*{name}">
+        <input type="text" th:field="*{name}"th:errorclass="err">
+        <span th:errors="*{name}" class="err"></span>
         <br>
         <br>
          <label for="password">パスワード</label>
-        <input type="text" th:field="*{authentication.password}">
+        <input type="text" th:field="*{authentication.password}"th:errorclass="err">
+        <span th:errors="*{authentication.password}" class="err"></span>
         <br>
         <br>
-        <label for="role">権限</label>
-        <select th:field="*{authentication.role}">
-            <option value="" th:text="選択してください">
-            <option th:each="item:${T(com.techacademy.entity.Authentication.Role).values()}" th:value="${item}" th:text="${item}" >
+         <label for="role">権限</label>
+        <select th:field="*{authentication.role}" th:errorclass="err">
+            <option value="" th:text="選択してください" th:selected="${employee.authentication.role == ''}">
+          <option th:each="item:${T(com.techacademy.entity.Authentication.Role).values()}" th:value="${item}" th:text="${item}" th:selected="*{authentication.role} == ${item}">
         </select>
+         <span th:errors="*{authentication.role}" class="err"></span>
+        <br>
         <br>
         <input type="submit" value="更新実行">
         <a th:href="@{/employee/list}">更新せずに一覧に戻る</a>
     </form>
-    <a th:href="@{/employee/delete/{id}/(id=${employee.id})}">削除</a>
+    <input type="submit" name="deleteRun" id="deleteRun" value="削除">
 </body>
 </html>

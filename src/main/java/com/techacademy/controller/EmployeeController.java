@@ -75,7 +75,7 @@ public class EmployeeController {
 		return "redirect:/employee/list";
 	}
 
-	@PostMapping(path = "list", params = "deleteRun")
+	@PostMapping(path = "update", params = "deleteRun")
 	public String deleteRun(@RequestParam(name = "idck") Set<Integer> idck, Model model) {
 
 		service.deleteEmployee(idck);
