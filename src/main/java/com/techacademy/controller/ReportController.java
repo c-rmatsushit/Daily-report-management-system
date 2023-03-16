@@ -1,5 +1,7 @@
 package com.techacademy.controller;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -74,5 +76,12 @@ public class ReportController {
 		service.saveReport(report);
 
 		return "redirect:/report/list";
+	}
+
+	@GetMapping("/report")
+	public String getUserInfo(@AuthenticationPrincipal UserDetails userDetails, Model model) {
+		 String username = userDetails.getUsername();
+		    model.addAttribute("username", username);
+		    return "report/register";
 	}
 }

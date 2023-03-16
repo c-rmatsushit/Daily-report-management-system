@@ -10,8 +10,10 @@
 	<h2>登録</h2>
 	<form method="post" th:action="@{/report/register}"
 		th:object="${report}">
-		<br> <label for="name">氏名</label> <input type="text"
-			th:field="*{employee.name}" th:errorclass="err"> <br> <br>
+		<tr>
+			<th>氏名</th>
+			<td th:text="${username}"></td>
+		</tr>
 		<label for="reportDate">日付</label> <input type="date" id="reportDate"
 			name="reportDate" value="2018-07-22"> <span
 			th:errors="*{reportDate}" class="err"></span> <br> <br> <label
