@@ -46,9 +46,16 @@ public class ReportController {
 		return "redirect:/report/list";
 	}
 
-	@GetMapping("/register")
+	@GetMapping("/register2")
 	public String getRegister(@ModelAttribute Report report) {
+
 		return "report/register";
+	}
+	@GetMapping("/register")
+	public String getUserInfo(@AuthenticationPrincipal UserDetails userDetails, Model model) {
+		 String name = userDetails.getUsername();
+		    model.addAttribute("name", name);
+		    return "report/register";
 	}
 
 	@PostMapping("/register")
@@ -78,10 +85,5 @@ public class ReportController {
 		return "redirect:/report/list";
 	}
 
-	@GetMapping("/report")
-	public String getUserInfo(@AuthenticationPrincipal UserDetails userDetails, Model model) {
-		 String username = userDetails.getUsername();
-		    model.addAttribute("username", username);
-		    return "report/register";
-	}
+
 }
