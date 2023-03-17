@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.techacademy.entity.Employee;
 import com.techacademy.entity.Report;
 import com.techacademy.service.ReportService;
 
@@ -34,41 +35,22 @@ public class ReportController {
 
 	}
 
-	@GetMapping(value = { "/detail", "/detail/{id}/" })
-	public String getReportdetail(@PathVariable("id") Integer id, Model model) {
-		model.addAttribute("report", service.getReport(id));
-		return "report/detail";
-	}
-
-	@PostMapping("/detail")
-	public String postReport(@RequestParam("id") Integer id, @RequestParam("name") String name, Model model) {
-		service.updateReport(id, name);
-		return "redirect:/report/list";
-	}
-
-	@GetMapping("/register2")
-	public String getRegister(@ModelAttribute Report report) {
-
-		return "report/register";
-	}
 	@GetMapping("/register")
-	public String getUserInfo(@AuthenticationPrincipal UserDetails userDetails, Model model) {
-		 String name = userDetails.getUsername();
-		    model.addAttribute("name", name);
-		    return "report/register";
-	}
+	public String getRegister(@AuthenticationPrincipal UserDetails userDetails, Model model) {
+	    String username = userDetails.getUsername();
+	    model.addAttribute("username", username);
+	    return "report/register";
+	  }
+
 
 	@PostMapping("/register")
-	public String postRegister(@Validated Report report, BindingResult res, Model model) {
-		if (res.hasErrors()) {
+	 public String postRegister(Report report) {
+        // User登録
+        service.saveReport(report);
+        // 一覧画面にリダイレクト
+        return "redirect:/report/list";
+    }
 
-			return getRegister(report);
-		}
-
-		service.saveReport(report);
-
-		return "redirect:/report/list";
-	}
 
 	@GetMapping("/update/{id}/")
 	public String getReport(@PathVariable("id") Integer id, Model model) {
@@ -84,6 +66,4 @@ public class ReportController {
 
 		return "redirect:/report/list";
 	}
-
-
 }
