@@ -27,35 +27,39 @@ public class ReportController {
 	}
 
 	@GetMapping("/list")
-	public String getList(Model model) {
-
+	public String getList(@ModelAttribute Report report ,@AuthenticationPrincipal UserDetails userDetails, Model model) {
+	    String username = userDetails.getUsername();
+	    model.addAttribute("username", username);
+	    model.addAttribute("report", report);
 		model.addAttribute("reportlist", service.getReportList());
-
 		return "report/list";
 
 	}
 
 	@GetMapping("/register")
-	public String getRegister(@AuthenticationPrincipal UserDetails userDetails, Model model) {
+	public String getRegister(@ModelAttribute Report report ,@AuthenticationPrincipal UserDetails userDetails, Model model) {
 	    String username = userDetails.getUsername();
 	    model.addAttribute("username", username);
+	    model.addAttribute("report", report);
 	    return "report/register";
 	  }
 
 
 	@PostMapping("/register")
 	 public String postRegister(Report report) {
-        // User登録
+
         service.saveReport(report);
-        // 一覧画面にリダイレクト
+
         return "redirect:/report/list";
     }
 
 
 	@GetMapping("/update/{id}/")
-	public String getReport(@PathVariable("id") Integer id, Model model) {
+	public String getReport(@ModelAttribute Report report ,@AuthenticationPrincipal UserDetails userDetails,@PathVariable("id") Integer id, Model model) {
 		model.addAttribute("report", service.getReport(id));
-
+		String username = userDetails.getUsername();
+	    model.addAttribute("username", username);
+	    model.addAttribute("report", report);
 		return "report/update";
 	}
 
