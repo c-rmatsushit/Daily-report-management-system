@@ -60,11 +60,10 @@ public class ReportController {
 
 
 	@GetMapping("/update/{id}/")
-	public String getReport(@ModelAttribute Report report ,@AuthenticationPrincipal UserDetails userDetails,@PathVariable("id") Integer id, Model model) {
+	public String getReport(@AuthenticationPrincipal UserDetails userDetails,@PathVariable("id") Integer id, Model model) {
 		model.addAttribute("report", service.getReport(id));
 		String username = userDetails.getUsername();
 	    model.addAttribute("username", username);
-	    model.addAttribute("report", report);
 		return "report/update";
 	}
 
