@@ -15,9 +15,10 @@
 <body>
 	<form method="post" action="/report/detail">
 		<table th:object="${report}">
+
 			<tr>
 				<th>氏名</th>
-				<td th:text="${report.employee.name}"></td>
+				<td th:text="${username}"></td>
 			</tr>
 			<tr>
 				<th>日付</th>

@@ -27,20 +27,16 @@ public class ReportService {
 		return reportRepository.findAll();
 	}
 
-	@Transactional
-	public Report saveReport(Report report) {
-		return reportRepository.save(report);
-	}
+
 
 	public Report getReport(Integer id) {
 		Optional<Report> option = reportRepository.findById(id);
 		Report report = option.orElse(null);
-		report.getEmployee().getName();
 		return report;
 	}
 
 	@Transactional
-	public Report saveRreport(Report report) {
+	public Report saveReport(Report report) {
 		LocalDateTime now = LocalDateTime.now();
 		LocalDate date1 = LocalDate.now();
 		report.setReportDate(date1);
@@ -62,7 +58,6 @@ public class ReportService {
 	public Report updateReport(Integer id, String name) {
 		Optional<Report> option = reportRepository.findById(id);
 		Report report = option.orElse(null);
-		report.getEmployee().getName();
 		return report;
 	}
 }

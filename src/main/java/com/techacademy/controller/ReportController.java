@@ -46,12 +46,17 @@ public class ReportController {
 
 
 	@PostMapping("/register")
-	 public String postRegister(Report report) {
+	 public String postRegister(@Validated Report report, BindingResult res, Model model) {
+			if (res.hasErrors()) {
 
-        service.saveReport(report);
+				return getRegister(report, null, model);
+			}
 
-        return "redirect:/report/list";
-    }
+			service.saveReport(report);
+
+			return "redirect:/report/list";
+	}
+
 
 
 	@GetMapping("/update/{id}/")
@@ -68,6 +73,22 @@ public class ReportController {
 
 		service.saveReport(report);
 
+		return "redirect:/report/list";
+	}
+
+
+    @GetMapping(value = { "/detail", "/detail/{id}/" })
+    public String getReportdetail(@ModelAttribute Report report ,@AuthenticationPrincipal UserDetails userDetails,@PathVariable("id") Integer id, Model model) {
+		model.addAttribute("report", service.getReport(id));
+		String username = userDetails.getUsername();
+	    model.addAttribute("username", username);
+	    model.addAttribute("report", report);
+        return "report/detail";
+    }
+
+	@PostMapping("/detail")
+	public String postReport(@RequestParam("id") Integer id, @RequestParam("name") String name, Model model) {
+		service.updateReport(id, name);
 		return "redirect:/report/list";
 	}
 }
