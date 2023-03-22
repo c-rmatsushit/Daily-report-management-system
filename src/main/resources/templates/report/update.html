@@ -5,6 +5,17 @@
 <title>日報管理システム</title>
 <link rel="stylesheet" th:href="@{/css/employee/update.css}">
 </head>
+<header>
+	<table>
+		<tr>
+			<th>日報管理システム</th>
+			<th>従業員管理</th>
+			<th>日報管理</th>
+			<th>	<form method="post" th:action="@{/logout}">
+		<input type="submit" value="ログアウト">
+	</form></th>
+	</table>
+</header>
 <body>
     <h1>日報管理</h1>
     <h2>更新</h2>
