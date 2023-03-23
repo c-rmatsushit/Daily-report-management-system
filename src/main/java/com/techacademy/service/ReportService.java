@@ -38,8 +38,6 @@ public class ReportService {
 	@Transactional
 	public Report saveReport(Report report) {
 		LocalDateTime now = LocalDateTime.now();
-		LocalDate date1 = LocalDate.now();
-		report.setReportDate(date1);
 		report.setCreatedAt(now);
 		report.setUpdatedAt(now);
 		return reportRepository.save(report);
