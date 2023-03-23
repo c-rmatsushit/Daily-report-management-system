@@ -32,3 +32,9 @@ function clickBtnDelete() {
 
 // 削除ボタンに関数を割り当てる
 document.getElementById("deleteRun").onclick = clickBtnDelete;
+
+// 日付フォームの値が変更されたら実行
+document.getElementById("reportDate").onchange = function() {
+    var date = document.getElementById("reportDate").value;
+    alert(date);
+};

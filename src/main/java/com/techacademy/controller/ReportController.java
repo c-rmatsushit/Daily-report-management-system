@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.techacademy.entity.Employee;
 import com.techacademy.entity.Report;
 import com.techacademy.service.ReportService;
 
@@ -24,6 +23,16 @@ public class ReportController {
 
 	public ReportController(ReportService service) {
 		this.service = service;
+
+	}
+	@GetMapping("/mylist")
+	public String getMylist(@ModelAttribute Report report ,@AuthenticationPrincipal UserDetails userDetails, Model model) {
+	    String username = userDetails.getUsername();
+	    model.addAttribute("username", username);
+	    model.addAttribute("report", report);
+		model.addAttribute("reportlist", service.getReportList());
+		return "report/mylist";
+
 	}
 
 	@GetMapping("/list")
