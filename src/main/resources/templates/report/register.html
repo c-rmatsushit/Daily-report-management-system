@@ -6,11 +6,12 @@
 <link rel="stylesheet" th:href="@{/css/employee/register.css}">
 </head>
 <header>
-	<table>
+	　<table>
 		<tr>
 			<th>日報管理システム</th>
-			<th>従業員管理</th>
-			<th>日報管理</th>
+			<th><a th:href="@{/employee/list}" >従業員管理</a></th>
+			<td><a th:href="@{/report/list}" >日報管理</a>
+			</td>
 			<th>	<form method="post" th:action="@{/logout}">
 		<input type="submit" value="ログアウト">
 	</form></th>

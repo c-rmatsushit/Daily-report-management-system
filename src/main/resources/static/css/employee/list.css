@@ -1,16 +1,16 @@
 @charset "UTF-8";
 
-header{
-	background-color:black;
+header {
+	background-color: black;
 	color: white;
-
 }
 
 table {
-    border-collapse: collapse;
+	border-collapse: collapse;
 }
 
 th, td {
-    border: solid 1px black;
-    padding: 10px 20px;
+	border: solid 1px black;
+	padding: 10px 20px;
 }
+

@@ -1,6 +1,5 @@
 package com.techacademy.service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -32,6 +31,7 @@ public class ReportService {
 	public Report getReport(Integer id) {
 		Optional<Report> option = reportRepository.findById(id);
 		Report report = option.orElse(null);
+		report.getEmployee().getName();
 		return report;
 	}
 
