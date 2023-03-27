@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.techacademy.entity.Employee;
 import com.techacademy.entity.Report;
 import com.techacademy.repository.ReportRepository;
 
@@ -26,7 +27,9 @@ public class ReportService {
 		return reportRepository.findAll();
 	}
 
-
+	public List<Report> getReportListEmployee() {
+		return reportRepository.findByEmployee(null);
+	}
 
 	public Report getReport(Integer id) {
 		Optional<Report> option = reportRepository.findById(id);
