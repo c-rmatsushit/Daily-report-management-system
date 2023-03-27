@@ -40,6 +40,7 @@ public class ReportService {
 		LocalDateTime now = LocalDateTime.now();
 		report.setCreatedAt(now);
 		report.setUpdatedAt(now);
+		report.getEmployee().getName();
 		return reportRepository.save(report);
 	}
 
