@@ -23,7 +23,6 @@ public class UserDetail implements UserDetails {
 		authorities.add(new SimpleGrantedAuthority(employee.getAuthentication().getRole().toString()));
 		this.authorities = authorities;
 	}
-
 	public Employee getUser() {
 		return employee;
 	}

@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.techacademy.entity.Employee;
 import com.techacademy.entity.Report;
 import com.techacademy.service.ReportService;
+import com.techacademy.service.UserDetail;
 
 @Controller
 @RequestMapping("report")
@@ -26,8 +28,8 @@ public class ReportController {
 
 	}
 	@GetMapping("/mylist")
-	public String getMylist(@ModelAttribute Report report ,@AuthenticationPrincipal UserDetails userDetails, Model model) {
-	    String username = userDetails.getUsername();
+	public String getMylist(@ModelAttribute Report report ,@AuthenticationPrincipal UserDetail userDetail, Model model) {
+	    String username = userDetail.getUsername();
 	    model.addAttribute("username", username);
 	    model.addAttribute("report", report);
 		model.addAttribute("reportlist", service.getReportListEmployee());
@@ -36,8 +38,8 @@ public class ReportController {
 	}
 
 	@GetMapping("/list")
-	public String getList(@ModelAttribute Report report ,@AuthenticationPrincipal UserDetails userDetails, Model model) {
-	    String username = userDetails.getUsername();
+	public String getList(@ModelAttribute Report report ,@AuthenticationPrincipal UserDetail userDetail, Model model) {
+	    String username = userDetail.getUsername();
 	    model.addAttribute("username", username);
 	    model.addAttribute("report", report);
 		model.addAttribute("reportlist", service.getReportList());
@@ -46,8 +48,10 @@ public class ReportController {
 	}
 
 	@GetMapping("/register")
-	public String getRegister(@ModelAttribute Report report ,@AuthenticationPrincipal UserDetails userDetails, Model model) {
-	    String username = userDetails.getUsername();
+	public String getRegister(@ModelAttribute Report report ,@AuthenticationPrincipal UserDetail userDetail, Model model) {
+	    String username = userDetail.getUsername();
+	    Employee user = userDetail.getUser();
+	    model.addAttribute("user", user);
 	    model.addAttribute("username", username);
 	    model.addAttribute("report", report);
 	    return "report/register";
@@ -55,12 +59,12 @@ public class ReportController {
 
 
 	@PostMapping("/register")
-	 public String postRegister(@Validated Report report, BindingResult res, Model model) {
+	 public String postRegister(@Validated Report report, BindingResult res ,@AuthenticationPrincipal UserDetail userDetail, Model model) {
 			if (res.hasErrors()) {
 
 				return getRegister(report, null, model);
 			}
-
+			report.setEmployee(userDetail.getUser());
 			service.saveReport(report);
 
 			return "redirect:/report/list";
@@ -69,9 +73,9 @@ public class ReportController {
 
 
 	@GetMapping("/update/{id}/")
-	public String getReport(@AuthenticationPrincipal UserDetails userDetails,@PathVariable("id") Integer id, Model model) {
+	public String getReport(@AuthenticationPrincipal UserDetail userDetail,@PathVariable("id") Integer id, Model model) {
 		model.addAttribute("report", service.getReport(id));
-		String username = userDetails.getUsername();
+		String username = userDetail.getUsername();
 	    model.addAttribute("username", username);
 		return "report/update";
 	}
@@ -86,9 +90,9 @@ public class ReportController {
 
 
     @GetMapping(value = { "/detail", "/detail/{id}/" })
-    public String getReportdetail(@AuthenticationPrincipal UserDetails userDetails,@PathVariable("id") Integer id, Model model) {
+    public String getReportdetail(@AuthenticationPrincipal UserDetail userDetail,@PathVariable("id") Integer id, Model model) {
 		model.addAttribute("report", service.getReport(id));
-		String username = userDetails.getUsername();
+		String username = userDetail.getUsername();
 	    model.addAttribute("username", username);
         return "report/detail";
     }
