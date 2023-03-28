@@ -1,7 +1,6 @@
 package com.techacademy.controller;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -32,7 +31,7 @@ public class ReportController {
 	    String username = userDetail.getUsername();
 	    model.addAttribute("username", username);
 	    model.addAttribute("report", report);
-		model.addAttribute("reportlist", service.getReportListEmployee());
+		model.addAttribute("reportlist", service.getReportListEmployee(null));
 		return "report/mylist";
 
 	}

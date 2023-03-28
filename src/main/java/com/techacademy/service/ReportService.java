@@ -27,8 +27,8 @@ public class ReportService {
 		return reportRepository.findAll();
 	}
 
-	public List<Report> getReportListEmployee() {
-		return reportRepository.findByEmployee(null);
+	public  List<Report> getReportListEmployee(Employee employee) {
+		return reportRepository.findByEmployee(employee);
 	}
 
 	public Report getReport(Integer id) {
