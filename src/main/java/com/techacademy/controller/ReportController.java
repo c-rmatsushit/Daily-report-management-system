@@ -80,8 +80,9 @@ public class ReportController {
 	}
 
 	@PostMapping("/update/{id}/")
-	public String postReport(Report report) {
-
+	public String postReport(@Validated Report report, BindingResult res ,@AuthenticationPrincipal UserDetail userDetail, Model model) {
+		report.setEmployee(userDetail.getUser());
+		service.saveReport(report);
 		service.saveReport(report);
 
 		return "redirect:/report/list";
@@ -92,6 +93,8 @@ public class ReportController {
     public String getReportdetail(@AuthenticationPrincipal UserDetail userDetail,@PathVariable("id") Integer id, Model model) {
 		model.addAttribute("report", service.getReport(id));
 		String username = userDetail.getUsername();
+		Employee user = userDetail.getUser();
+	    model.addAttribute("user", user);
 	    model.addAttribute("username", username);
         return "report/detail";
     }
