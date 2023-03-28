@@ -31,7 +31,7 @@ public class ReportController {
 	    String username = userDetail.getUsername();
 	    model.addAttribute("username", username);
 	    model.addAttribute("report", report);
-		model.addAttribute("reportlist", service.getReportListEmployee(null));
+		model.addAttribute("reportlist", service.getReportListEmployee(userDetail.getUser()));
 		return "report/mylist";
 
 	}
