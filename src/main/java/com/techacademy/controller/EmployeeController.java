@@ -61,15 +61,18 @@ public class EmployeeController {
 	}
 
 	@GetMapping("/update/{id}/")
-	public String getEmployee(@PathVariable("id") Integer id, Model model) {
+	public String getEmployee(@Validated Employee employee, BindingResult res, @PathVariable("id") Integer id, Model model) {
 		model.addAttribute("employee", service.getEmployee(id));
 
 		return "employee/update";
 	}
 
 	@PostMapping("/update/{id}/")
-	public String postEmployee(Employee employee) {
+	public String postEmployee(@Validated Employee employee, BindingResult res, Model model) {
+		if (res.hasErrors()) {
 
+			return getRegister(employee);
+		}
 		service.saveEmployee(employee);
 
 		return "redirect:/employee/list";
