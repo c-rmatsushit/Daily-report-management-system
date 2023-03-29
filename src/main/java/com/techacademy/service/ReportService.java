@@ -47,7 +47,7 @@ public class ReportService {
 		if (report.getReportDate() == null) {
 			report.setReportDate(today);
 		}
-		
+
 		report.setCreatedAt(now);
 		report.setUpdatedAt(now);
 		report.getEmployee().getName();

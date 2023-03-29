@@ -61,7 +61,7 @@ public class ReportController {
 	 public String postRegister(@Validated Report report, BindingResult res ,@AuthenticationPrincipal UserDetail userDetail, Model model) {
 			if (res.hasErrors()) {
 
-				return getRegister(report, null, model);
+				return getRegister( report, userDetail, model);
 			}
 			report.setEmployee(userDetail.getUser());
 			service.saveReport(report);
