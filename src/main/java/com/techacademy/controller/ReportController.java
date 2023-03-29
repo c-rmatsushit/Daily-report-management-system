@@ -81,9 +81,13 @@ public class ReportController {
 
 	@PostMapping("/update/{id}/")
 	public String postReport(@Validated Report report, BindingResult res ,@AuthenticationPrincipal UserDetail userDetail, Model model) {
+		if (res.hasErrors()) {
+
+			return getRegister( report, userDetail, model);
+		}
 		report.setEmployee(userDetail.getUser());
 		service.saveReport(report);
-		service.saveReport(report);
+
 
 		return "redirect:/report/list";
 	}
