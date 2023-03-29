@@ -1,5 +1,6 @@
 package com.techacademy.service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -41,6 +42,12 @@ public class ReportService {
 	@Transactional
 	public Report saveReport(Report report) {
 		LocalDateTime now = LocalDateTime.now();
+		LocalDate today = LocalDate.now();
+
+		if (report.getReportDate() == null) {
+			report.setReportDate(today);
+		}
+		
 		report.setCreatedAt(now);
 		report.setUpdatedAt(now);
 		report.getEmployee().getName();
