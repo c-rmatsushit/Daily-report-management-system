@@ -2,6 +2,8 @@ package com.techacademy.controller;
 
 import java.util.Set;
 
+import javax.validation.ConstraintViolationException;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -31,11 +33,11 @@ public class EmployeeController {
 		return "employee/list";
 	}
 
-    @GetMapping(value = { "/detail", "/detail/{id}/" })
-    public String getEmployeedetail(@PathVariable("id") Integer id, Model model) {
+	@GetMapping(value = { "/detail", "/detail/{id}/" })
+	public String getEmployeedetail(@PathVariable("id") Integer id, Model model) {
 		model.addAttribute("employee", service.getEmployee(id));
-        return "employee/detail";
-    }
+		return "employee/detail";
+	}
 
 	@PostMapping("/detail")
 	public String postEmployee(@RequestParam("id") Integer id, @RequestParam("name") String name, Model model) {
@@ -54,6 +56,11 @@ public class EmployeeController {
 
 			return getRegister(employee);
 		}
+		try {
+			service.saveEmployee(employee);
+		} catch (Exception e) {
+			return getRegister(employee);
+		}
 
 		service.saveEmployee(employee);
 
@@ -61,7 +68,8 @@ public class EmployeeController {
 	}
 
 	@GetMapping("/update/{id}/")
-	public String getEmployee(@Validated Employee employee, BindingResult res, @PathVariable("id") Integer id, Model model) {
+	public String getEmployee(@Validated Employee employee, BindingResult res, @PathVariable("id") Integer id,
+			Model model) {
 		model.addAttribute("employee", service.getEmployee(id));
 
 		return "employee/update";
