@@ -41,7 +41,8 @@ public class EmployeeService {
 		employee.setCreatedAt(now);
 		employee.setUpdatedAt(now);
 		employee.setDeleteFlag(0);
-
+		employee.getAuthentication().setEmployee(employee);
+		
 		return employeeRepository.save(employee);
 	}
 
