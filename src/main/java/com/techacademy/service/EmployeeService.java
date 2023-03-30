@@ -16,6 +16,8 @@ import com.techacademy.repository.EmployeeRepository;
 @Service
 public class EmployeeService {
 	private final EmployeeRepository employeeRepository;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	public EmployeeService(EmployeeRepository repository) {
 
@@ -42,11 +44,9 @@ public class EmployeeService {
 		employee.setUpdatedAt(now);
 		employee.setDeleteFlag(0);
 		employee.getAuthentication().setEmployee(employee);
-		
+		employee.getAuthentication().setPassword(passwordEncoder.toString());
 		return employeeRepository.save(employee);
 	}
-
-
 
 	@Transactional
 	public void registerEmployee(Set<Integer> idck) {
@@ -62,10 +62,6 @@ public class EmployeeService {
 		}
 	}
 
-	@Autowired
-	private PasswordEncoder passwordEncoder;
-
-
 	public Employee updateEmployee(Integer id, String name) {
 		Optional<Employee> option = employeeRepository.findById(id);
 		Employee employee = option.orElse(null);
@@ -73,5 +69,4 @@ public class EmployeeService {
 		employee.getAuthentication().getRole();
 		return employee;
 	}
-	}
-
+}
