@@ -87,7 +87,7 @@ public class EmployeeController {
 	}
 
 	@PostMapping(path = "update", params = "deleteRun")
-	public String deleteRun(@RequestParam(name = "idck") Set<Integer> idck, Model model) {
+	public String deleteRun(@RequestParam(name = "id") Set<Integer> idck, Model model) {
 
 		service.deleteEmployee(idck);
 

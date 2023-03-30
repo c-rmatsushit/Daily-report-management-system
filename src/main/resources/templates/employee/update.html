@@ -20,7 +20,7 @@
 <body>
     <h1>情報管理システム</h1>
     <h2>更新</h2>
-    <form method="post" th:action="@{/employee/update/{id}/(id=${employee.id})}" th:object="${employee}">
+    <form method="post" th:action="@{/employee/update/{id}/(id=${employee.id})}" th:object="${employee}" name="idck">
         <label for="id">ID</label>
         <input type="hidden" id="id" name="id" th:value="*{id}" th:text="*{id}">
          <br>
