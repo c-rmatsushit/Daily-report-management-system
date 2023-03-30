@@ -32,7 +32,7 @@ public class EmployeeService {
 		Employee employee = option.orElse(null);
 		employee.getAuthentication().getCode();
 		employee.getAuthentication().getRole();
-		return employee;
+		return employeeRepository.findById(id).get();
 	}
 
 	@Transactional
@@ -40,6 +40,8 @@ public class EmployeeService {
 		LocalDateTime now = LocalDateTime.now();
 		employee.setCreatedAt(now);
 		employee.setUpdatedAt(now);
+		employee.setDeleteFlag(0);
+
 		return employeeRepository.save(employee);
 	}
 

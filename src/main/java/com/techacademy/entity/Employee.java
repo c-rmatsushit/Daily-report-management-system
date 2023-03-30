@@ -11,10 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.PreRemove;
 import javax.persistence.Table;
-import javax.transaction.Transactional;
-
 import org.hibernate.annotations.Where;
 
 import javax.validation.constraints.NotEmpty;
@@ -36,7 +33,7 @@ public class Employee {
 	@Length(max = 20)
 	private String name;
 
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	private Integer deleteFlag;
 
 	@Column(nullable = true)
@@ -50,13 +47,5 @@ public class Employee {
 
 	@OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
 	private List<Report> reports;
-
-	@PreRemove
-	@Transactional
-	private void preRemove() {
-		if (authentication != null) {
-			authentication.setEmployee(null);
-		}
-	}
 
 }
