@@ -1,5 +1,7 @@
 package com.techacademy.controller;
 
+import java.time.LocalDateTime;
+
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -64,6 +66,9 @@ public class ReportController {
 				return getRegister( report, userDetail, model);
 			}
 			report.setEmployee(userDetail.getUser());
+			LocalDateTime now = LocalDateTime.now();
+			report.setCreatedAt(now);
+			report.setUpdatedAt(now);
 			service.saveReport(report);
 
 			return "redirect:/report/list";
@@ -104,8 +109,10 @@ public class ReportController {
     }
 
 	@PostMapping("/detail")
-	public String postReport(@RequestParam("id") Integer id, @RequestParam("name") String name, Model model) {
+	public String postReport(@Validated Report report ,@RequestParam("id") Integer id, @RequestParam("name") String name, Model model) {
 		service.updateReport(id, name);
+		LocalDateTime now = LocalDateTime.now();
+		report.setUpdatedAt(now);
 		return "redirect:/report/list";
 	}
 }

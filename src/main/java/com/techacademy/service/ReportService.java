@@ -41,15 +41,12 @@ public class ReportService {
 
 	@Transactional
 	public Report saveReport(Report report) {
-		LocalDateTime now = LocalDateTime.now();
+
 		LocalDate today = LocalDate.now();
 
 		if (report.getReportDate() == null) {
 			report.setReportDate(today);
 		}
-
-		report.setCreatedAt(now);
-		report.setUpdatedAt(now);
 		report.getEmployee().getName();
 		return reportRepository.save(report);
 	}
