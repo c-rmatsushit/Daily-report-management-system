@@ -91,12 +91,11 @@ public class ReportController {
 			return getRegister( report, userDetail, model);
 		}
 		report.setEmployee(userDetail.getUser());
-		service.saveReport(report);
-		Report updateReport = service.getReport(id);
+		Report updateReport = service.getReport(report.getId());
+		report.getCreatedAt();
 		LocalDateTime now = LocalDateTime.now();
 		report.setUpdatedAt(now);
-
-
+		service.saveReport(report);
 		return "redirect:/report/list";
 	}
 
@@ -114,8 +113,6 @@ public class ReportController {
 	@PostMapping("/detail")
 	public String postReport(@Validated Report report ,@RequestParam("id") Integer id, @RequestParam("name") String name, Model model) {
 		service.updateReport(id, name);
-		LocalDateTime now = LocalDateTime.now();
-		report.setUpdatedAt(now);
 		return "redirect:/report/list";
 	}
 }
