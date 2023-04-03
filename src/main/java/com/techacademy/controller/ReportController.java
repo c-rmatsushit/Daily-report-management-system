@@ -85,13 +85,16 @@ public class ReportController {
 	}
 
 	@PostMapping("/update/{id}/")
-	public String postReport(@Validated Report report, BindingResult res ,@AuthenticationPrincipal UserDetail userDetail, Model model) {
+	public String postReport(@PathVariable("id") Integer id,@Validated Report report, BindingResult res ,@AuthenticationPrincipal UserDetail userDetail, Model model) {
 		if (res.hasErrors()) {
 
 			return getRegister( report, userDetail, model);
 		}
 		report.setEmployee(userDetail.getUser());
 		service.saveReport(report);
+		Report updateReport = service.getReport(id);
+		LocalDateTime now = LocalDateTime.now();
+		report.setUpdatedAt(now);
 
 
 		return "redirect:/report/list";

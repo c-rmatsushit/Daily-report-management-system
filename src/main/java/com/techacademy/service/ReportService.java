@@ -48,6 +48,9 @@ public class ReportService {
 			report.setReportDate(today);
 		}
 		report.getEmployee().getName();
+		report.getContent();
+		report.getReportDate();
+		report.getTitle();
 		return reportRepository.save(report);
 	}
 
