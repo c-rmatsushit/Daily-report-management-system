@@ -62,8 +62,7 @@ public class ReportService {
 		}
 	}
 
-	@Autowired
-	private PasswordEncoder passwordEncoder;
+
 
 	public Report updateReport(Integer id, String name) {
 		Optional<Report> option = reportRepository.findById(id);
