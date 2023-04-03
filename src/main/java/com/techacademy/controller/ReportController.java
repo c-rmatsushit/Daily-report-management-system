@@ -91,11 +91,10 @@ public class ReportController {
 			return getRegister( report, userDetail, model);
 		}
 		report.setEmployee(userDetail.getUser());
-		Report updateReport = service.getReport(report.getId());
-		report.getCreatedAt();
+		Report updatereport = service.getReport(id);
 		LocalDateTime now = LocalDateTime.now();
-		report.setUpdatedAt(now);
-		service.saveReport(report);
+		updatereport.setUpdatedAt(now);
+		service.saveReport(updatereport);
 		return "redirect:/report/list";
 	}
 

@@ -36,6 +36,7 @@ public class ReportService {
 		Optional<Report> option = reportRepository.findById(id);
 		Report report = option.orElse(null);
 		report.getEmployee().getName();
+
 		return report;
 	}
 
