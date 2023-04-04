@@ -33,7 +33,7 @@
         <br>
         <br>
          <label for="password">パスワード</label>
-        <input type="text" th:field="*{authentication.password}" th:errorclass="err">
+        <input type="text" th:field="*{authentication.password}" th:errorclass="err" name="password">
         <span th:errors="*{authentication.password}" class="err"></span>
         <br>
         <br>

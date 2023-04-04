@@ -44,7 +44,7 @@ public class EmployeeService {
 		employee.setUpdatedAt(now);
 		employee.setDeleteFlag(0);
 		employee.getAuthentication().setEmployee(employee);
-		employee.getAuthentication().setPassword(passwordEncoder.encode("abc"));
+		employee.getAuthentication().setPassword(passwordEncoder.encode("password"));
 		return employeeRepository.save(employee);
 	}
 
