@@ -21,9 +21,9 @@
 <body>
 	<h1>情報管理システム</h1>
 	<h2>更新</h2>
-	<form method="post"
-		th:action="@{/employee/update/{id}/(id=${employee.id})}"
-		th:object="${employee}" name="idck">
+	<form method="post" 
+		th:action="@{/employee/update/{id}/(id=${employee.id})}" 
+		th:object="${employee}" name="idck" >
 		<label for="id">ID</label> <input type="hidden" id="id" name="id"
 			th:value="*{id}" th:text="*{id}"> <br> <br> <label
 			for="社員番号">社員番号</label> <input type="text"
@@ -44,7 +44,8 @@
 				th:selected="*{authentication.role} == ${item}">
 		</select> <span th:errors="*{authentication.role}" class="err"></span> <br>
 		<br> <input type="submit" value="更新実行"> <a
-			th:href="@{/employee/list}">更新せずに一覧に戻る</a> <br> <input
+			th:href="@{/employee/list}">更新せずに一覧に戻る</a> <br>
+			<input
 			type="submit" name="deleteRun" id="deleteRun" value="削除">
 	</form>
 </body>

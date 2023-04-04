@@ -48,18 +48,12 @@ public class EmployeeService {
 		return employeeRepository.save(employee);
 	}
 
-	@Transactional
-	public void registerEmployee(Set<Integer> idck) {
-		for (Integer id : idck) {
-			employeeRepository.deleteById(id);
-		}
-	}
 
 	@Transactional
-	public void deleteEmployee(Set<Integer> idck) {
-		for (Integer id : idck) {
-			employeeRepository.deleteById(id);
-		}
+	public void deleteEmployee(Integer id) {
+
+	employeeRepository.deleteById(id);
+
 	}
 
 	public Employee updateEmployee(Integer id, String name) {

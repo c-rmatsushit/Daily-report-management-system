@@ -76,15 +76,22 @@ public class EmployeeController {
 	}
 
 	@PostMapping("/update/{id}/")
-	public String postEmployee(@Validated Employee employee,@RequestParam(name = "id") Set<Integer> idck, BindingResult res, Model model) {
+	public String postEmployee(@Validated Employee employee, @RequestParam(name = "id") Set<Integer> idck,
+			BindingResult res, Model model) {
 		if (res.hasErrors()) {
 
 			return getRegister(employee);
 		}
 		service.saveEmployee(employee);
-		service.deleteEmployee(idck);
 
 		return "redirect:/employee/list";
 	}
 
+	@PostMapping(path = "/update/{id}/", params = "deleteRun")
+	public String deleteRun(Integer id) {
+
+		service.deleteEmployee(id);
+
+		return "redirect:/employee/list";
+	}
 }
