@@ -55,6 +55,7 @@ public class ReportController {
 	    model.addAttribute("user", user);
 	    model.addAttribute("username", username);
 	    model.addAttribute("report", report);
+		model.addAttribute("reportlist", service.getReportList());
 	    return "report/register";
 	  }
 
@@ -70,17 +71,18 @@ public class ReportController {
 			report.setCreatedAt(now);
 			report.setUpdatedAt(now);
 			service.saveReport(report);
-
 			return "redirect:/report/list";
 	}
 
 
 
 	@GetMapping("/update/{id}/")
-	public String getReport(@AuthenticationPrincipal UserDetail userDetail,@PathVariable("id") Integer id, Model model) {
+	public String getReport(@ModelAttribute Report report,@AuthenticationPrincipal UserDetail userDetail,@PathVariable("id") Integer id, Model model) {
 		model.addAttribute("report", service.getReport(id));
 		String username = userDetail.getUsername();
-	    model.addAttribute("username", username);
+		model.addAttribute("username", username);
+	    model.addAttribute("report", report);
+		model.addAttribute("reportlist", service.getReportList());
 		return "report/update";
 	}
 
@@ -94,18 +96,20 @@ public class ReportController {
 		Report updatereport = service.getReport(id);
 		LocalDateTime now = LocalDateTime.now();
 		updatereport.setUpdatedAt(now);
-		service.saveReport(updatereport);
+		service.saveReport(report);
 		return "redirect:/report/list";
 	}
 
 
     @GetMapping(value = { "/detail", "/detail/{id}/" })
-    public String getReportdetail(@AuthenticationPrincipal UserDetail userDetail,@PathVariable("id") Integer id, Model model) {
+    public String getReportdetail(@ModelAttribute Report report,@AuthenticationPrincipal UserDetail userDetail,@PathVariable("id") Integer id, Model model) {
 		model.addAttribute("report", service.getReport(id));
 		String username = userDetail.getUsername();
 		Employee user = userDetail.getUser();
 	    model.addAttribute("user", user);
 	    model.addAttribute("username", username);
+	    model.addAttribute("reportlist", service.getReportList());
+
         return "report/detail";
     }
 
