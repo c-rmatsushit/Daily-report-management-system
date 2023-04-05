@@ -8,7 +8,6 @@ import java.util.Set;
 
 import javax.transaction.Transactional;
 
-import org.hibernate.sql.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -37,9 +36,7 @@ public class ReportService {
 		Optional<Report> option = reportRepository.findById(id);
 		Report report = option.orElse(null);
 		report.getEmployee().getName();
-		report.getContent();
-		report.getReportDate();
-		report.getTitle();
+
 		return report;
 	}
 
