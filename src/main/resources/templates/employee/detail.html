@@ -18,8 +18,7 @@
 	</table>
 </header>
 <body>
-	<h1>従業員情報</h1>
-	<h2>詳細</h2>
+	<h1>id:<input type="hidden" id="id" name="id" th:value="*{id}" th:text="*{id}">の従業員情報　詳細ページ</h1>
 	<form method="post" th:action="@{/logout}">
 		<input type="submit" value="ログアウト">
 	</form>

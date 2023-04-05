@@ -18,8 +18,7 @@
 	</table>
 </header>
 <body>
-    <h1>情報管理システム</h1>
-    <h2>登録</h2>
+    <h1>従業員　新規登録ページ</h1>
     <form method="post" th:action="@{/employee/register}" th:object="${employee}">
          <br>
          <label for="code">社員番号</label>
@@ -33,7 +32,7 @@
         <br>
         <br>
          <label for="password">パスワード</label>
-        <input type="text" th:field="*{authentication.password}" th:errorclass="err" name="password">
+        <input type="text" th:field="*{authentication.password}"  id="password" name="password">
         <span th:errors="*{authentication.password}" class="err"></span>
         <br>
         <br>

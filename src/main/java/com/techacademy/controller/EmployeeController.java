@@ -68,7 +68,7 @@ public class EmployeeController {
 	}
 
 	@GetMapping("/update/{id}/")
-	public String getEmployee(@Validated Employee employee, BindingResult res, @PathVariable("id") Integer id,
+	public String getEmployee(Employee employee, BindingResult res, @PathVariable("id") Integer id,
 			Model model) {
 		model.addAttribute("employee", service.getEmployee(id));
 
@@ -76,7 +76,7 @@ public class EmployeeController {
 	}
 
 	@PostMapping("/update/{id}/")
-	public String postEmployee(@Validated Employee employee, @RequestParam(name = "id") Set<Integer> idck,
+	public String postEmployee(Employee employee, @RequestParam(name = "id") Set<Integer> idck,
 			BindingResult res, Model model) {
 		if (res.hasErrors()) {
 
