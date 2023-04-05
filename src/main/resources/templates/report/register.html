@@ -29,7 +29,7 @@
 		</table>
 		<br>
 		<label for="reportDate">日付</label>
-		<input type="date" id="reportDate" name="reportDate" >
+		<input type="date" th:field="*{reportDate}" >
 		 <span th:errors="*{reportDate}"  class="err"></span>
 			<br>
 			 <br>
