@@ -16,6 +16,7 @@ public class EmployeeService {
 	private final EmployeeRepository employeeRepository;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	private CharSequence password;
 
 	public EmployeeService(EmployeeRepository repository) {
 
@@ -42,7 +43,7 @@ public class EmployeeService {
 		employee.setUpdatedAt(now);
 		employee.setDeleteFlag(0);
 		employee.getAuthentication().setEmployee(employee);
-		employee.getAuthentication().setPassword(passwordEncoder.encode("password"));
+		employee.getAuthentication().setPassword(passwordEncoder.encode(password));
 		return employeeRepository.save(employee);
 	}
 
