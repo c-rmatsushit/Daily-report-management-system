@@ -62,8 +62,6 @@ public class EmployeeController {
 			return getRegister(employee);
 		}
 
-		service.saveEmployee(employee);
-
 		return "redirect:/employee/list";
 	}
 
