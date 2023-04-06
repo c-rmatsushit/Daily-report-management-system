@@ -87,8 +87,8 @@ public class EmployeeController {
 		return "redirect:/employee/list";
 	}
 
-	@PostMapping(path = "/update/{id}/", params = "deleteRun")
-	public String deleteRun(Integer id) {
+	@PostMapping(path = "/update/{id}/", params = "deleteFlag")
+	public String deleteFlag(Integer id) {
 
 		service.deleteEmployee(id);
 
