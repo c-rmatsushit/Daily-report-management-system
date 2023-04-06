@@ -1,9 +1,11 @@
 package com.techacademy.controller;
 
+import java.util.Optional;
 import java.util.Set;
 
 import javax.validation.ConstraintViolationException;
 
+import org.hibernate.sql.Update;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -86,10 +88,9 @@ public class EmployeeController {
 	}
 
 	@PostMapping(path = "/update/{id}/", params = "deleteFlag")
-	public String deleteFlag(Integer id) {
-
-		service.deleteEmployee(id);
-
+	public String deleteEmployee(@PathVariable("id") Integer id) {
+		Employee employee = service.getEmployee(id);
+		service.deleteEmployee(employee);
 		return "redirect:/employee/list";
 	}
 }

@@ -49,10 +49,9 @@ public class EmployeeService {
 
 
 	@Transactional
-	public void deleteEmployee(Integer id) {
-
-	employeeRepository.deleteById(id);
-
+	public Employee deleteEmployee(Employee employee) {
+		employee.setDeleteFlag(1);
+		return employeeRepository.save(employee);
 	}
 
 	public Employee updateEmployee(Integer id, String name) {
