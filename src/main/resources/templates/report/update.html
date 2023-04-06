@@ -36,9 +36,8 @@
 			 <span th:errors="*{title}" class="err"></span>
 		<br>
 		<br>
-			 <label for="content">内容</label>
-			 <input type="text" th:field="*{content}" th:errorclass="err">
-			 <span th:errors="*{content}" class="err"></span>
+		<label for="content">内容</label>
+        <textarea th:field="*{content}" id="content" name="content" rows="5" cols="33"></textarea>
 		<br>
 		<br>
         <input type="submit" value="更新実行">

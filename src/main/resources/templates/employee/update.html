@@ -35,9 +35,8 @@
 		<input type="text" th:field="*{name}" th:errorclass="err"> <span th:errors="*{name}" class="err"></span>
 		<br>
 		<br>
-		<label for="password">パスワード</label>
-		<input type="text" th:field="*{authentication.password}" th:errorclass="err">
-		<span th:errors="*{authentication.password}" class="err"></span>
+         <label for="password">パスワード</label>
+        <input type="text" th:field="*{authentication.password}"  id="password" name="password">
 
 		 <br>
 		<br> <label for="role">権限</label> <select

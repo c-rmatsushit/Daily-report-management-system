@@ -15,3 +15,7 @@ label {
 .err {
     color: red;
 }
+
+pre {
+    font-family: "Hiragino Kaku Gothic Pro",Meiryo,"MS PGothic",Helvetica,Arial,sans-serif;
+}
