@@ -1,4 +1,5 @@
 package com.techacademy;
+
 import org.apache.catalina.connector.Connector;
 import org.apache.coyote.ajp.AjpNio2Protocol;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
@@ -13,6 +14,7 @@ public class TomcatConfiguration implements WebServerFactoryCustomizer<TomcatSer
         // Tomcatとの通信手段にAJPを追加
         factory.addAdditionalTomcatConnectors(ajpConnector());
     }
+
     private Connector ajpConnector() {
         // AJPの利用を宣言
         Connector connector = new Connector("org.apache.coyote.ajp.AjpNio2Protocol");
@@ -26,5 +28,5 @@ public class TomcatConfiguration implements WebServerFactoryCustomizer<TomcatSer
 
         return connector;
     }
-}
 
+}
